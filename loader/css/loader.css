@@ -1,0 +1,25 @@
+.loader {
+  border: 16px solid #bdc3c7;
+  border-top-color: blue;
+  border-bottom-color: red;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  transform-origin: center;
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

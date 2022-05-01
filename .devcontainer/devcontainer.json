@@ -1,0 +1,64 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/debian
+{
+	"name": "HTML Container",
+
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Context is relative to the root of the container (i.e. location of devcontainer.json).
+		"context": "..",
+		// Update 'VARIANT' to pick an Debian version: bullseye, buster, stretch
+		// Use bullseye or stretch on local arm64/Apple Silicon.
+		"args": { "VARIANT": "bullseye" }
+	},
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"dbaeumer.vscode-eslint",
+		"ms-vscode.live-server",
+		"eamodio.gitlens",
+		"GitHub.vscode-pull-request-github",
+		"GitHub.copilot"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Docker Compose: Update (or extend) your docker-compose.yml with the following for the appropriate service:
+	// user: user-name-or-UID-goes-here
+
+	// Volumes used for file storage
+	"workspaceMount": "source=html-container,target=/workspaces/html-container,type=volume",
+	"workspaceFolder": "/workspaces/html-container",
+
+	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
+	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
+
+	// Preserve vscode extensions through container rebuilds
+	"mounts": [
+		"source=vscode-extensions-html-container,target=/home/vscode/.vscode-server/extensions,type=volume",
+		"source=vscode-insiders-extensions-html-container,target=/home/vscode/.vscode-server-insiders/extensions,type=volume" // VS Code Insiders
+	],
+
+	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
+	// "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
+
+	// "postCreateCommand": "sudo chown -R ${remoteUser} ${workspaceFolder}"
+	// "postCreateCommand": [
+	// 	"sudo chown -R vscode /workspaces/html-container",
+	// 	"sudo chown -R vscode /home/vscode/.vscode-server/extensions", 
+	// 	"sudo chown -R vscode /home/vscode/.vscode-server-insiders/extensions"
+	// ], 
+
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+
+	// Dockerfile and image
+	"containerUser": "vscode",
+
+	// Leave container running after disconnection or closing VS Code
+	"shutdownAction": "none"
+}
